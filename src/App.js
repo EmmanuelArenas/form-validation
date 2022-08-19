@@ -2,10 +2,6 @@ import React from "react";
 import {
   Formulario,
   Label,
-  GrupoInput,
-  Input,
-  IconValidacion,
-  LeyendaError,
   ContTerminos,
   ContBoton,
   Boton,
@@ -13,23 +9,22 @@ import {
   MsjError,
 } from "./style/formularios.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faExclamationTriangle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import Input from "./components/input.jsx";
 
 const App = () => {
   return (
     <main>
       <Formulario action="">
-        <div>
-          <Label htmlFor="nombre">Usuario</Label>
-          <GrupoInput>
-            <Input type="text" placeholder="Usuario" id="nombre" />
-            <IconValidacion icon={faCheckCircle} />
-          </GrupoInput>
-          <LeyendaError>Lorem ipsum dolor sit amet.</LeyendaError>
-        </div>
+        <Input
+          type="text"
+          label="Usuario"
+          placeholder="Ingresa tu nombre"
+          name="Usuario"
+          leyendaError="El usuario tiene que se de 4 a 16 digitos y solo puede contener letras, numeros y guion bajo."
+          reGex=""
+        />
+
         <ContTerminos>
           <Label>
             <input type="checkbox" name="terminos" id="terminos" /> Acepto los
