@@ -20,6 +20,7 @@ const ComponentInput = ({
   reGex,
   state,
   changeState,
+  funcion,
 }) => {
   const onChange = (e) => {
     // console.log(e.target.value);
@@ -33,6 +34,9 @@ const ComponentInput = ({
       } else {
         changeState({ ...state, valido: "false" });
       }
+    }
+    if (funcion) {
+      funcion();
     }
   };
 

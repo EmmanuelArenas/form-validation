@@ -21,11 +21,27 @@ const App = () => {
   const [telefono, setTelefono] = useState({ campo: "", valido: null });
 
   const expresiones = {
-    usuario: /^[a-zA-Z0-9\-.]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    usuario: /^[a-zA-Z0-9-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+  };
+
+  const valuePassword = () => {
+    if (password.campo.length > 0) {
+      if (password.campo !== password2.campo) {
+        // console.log("noOk");
+        setPassword2((prevState) => {
+          return { ...prevState, valido: "false" };
+        });
+      } else {
+        // console.log("ok");
+        setPassword2((prevState) => {
+          return { ...prevState, valido: "true" };
+        });
+      }
+    }
   };
 
   return (
@@ -69,7 +85,7 @@ const App = () => {
           placeholder="**********"
           name="password2"
           leyendaError="Ambas contraseñas deben ser iguales"
-          // fucntion={validarPassword2}
+          funcion={valuePassword}
         />
         <Input
           state={email}
