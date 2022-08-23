@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Formulario,
   Label,
@@ -13,18 +13,84 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./components/input.jsx";
 
 const App = () => {
+  const [usuario, setUsuario] = useState({ campo: "", valido: null });
+  const [nombre, setNombre] = useState({ campo: "", valido: null });
+  const [password, setPassword] = useState({ campo: "", valido: null });
+  const [password2, setPassword2] = useState({ campo: "", valido: null });
+  const [email, setEmail] = useState({ campo: "", valido: null });
+  const [telefono, setTelefono] = useState({ campo: "", valido: null });
+
+  const expresiones = {
+    usuario: /^[a-zA-Z0-9\-.]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    password: /^.{4,12}$/, // 4 a 12 digitos.
+    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+  };
+
   return (
     <main>
       <Formulario action="">
         <Input
+          state={usuario}
+          changeState={setUsuario}
           type="text"
           label="Usuario"
-          placeholder="Ingresa tu nombre"
+          placeholder="Ingresa nombre de usuario"
           name="Usuario"
-          leyendaError="El usuario tiene que se de 4 a 16 digitos y solo puede contener letras, numeros y guion bajo."
-          reGex=""
+          leyendaError="El usuario tiene que se de 4 a 16 digitos y solo puede contener letras, numeros y guion medio."
+          reGex={expresiones.usuario}
         />
-
+        <Input
+          state={nombre}
+          changeState={setNombre}
+          type="text"
+          label="Nombre"
+          placeholder="Nombre Apellido"
+          name="nombre"
+          leyendaError="El nombre solo puede contener letras y espacios."
+          reGex={expresiones.nombre}
+        />
+        <Input
+          state={password}
+          changeState={setPassword}
+          type="password"
+          label="Contraseña"
+          placeholder="**********"
+          name="password1"
+          leyendaError="La contraseña tiene que ser de 4 a 16 digitos"
+          reGex={expresiones.password}
+        />
+        <Input
+          state={password2}
+          changeState={setPassword2}
+          type="password"
+          label="Contraseña"
+          placeholder="**********"
+          name="password2"
+          leyendaError="Ambas contraseñas deben ser iguales"
+          // fucntion={validarPassword2}
+        />
+        <Input
+          state={email}
+          changeState={setEmail}
+          type="email"
+          label="Correo"
+          placeholder="tucorreo@hosting.com"
+          name="email"
+          leyendaError="El correo solo puede contener letras numeros y puntos"
+          reGex={expresiones.email}
+        />
+        <Input
+          state={telefono}
+          changeState={setTelefono}
+          type="text"
+          label="Telefono"
+          placeholder="123456789"
+          name="telefono"
+          leyendaError="Solo numeros y un maximo de 14 numeros"
+          reGex={expresiones.telefono}
+        />
         <ContTerminos>
           <Label>
             <input type="checkbox" name="terminos" id="terminos" /> Acepto los
