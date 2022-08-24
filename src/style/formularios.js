@@ -42,7 +42,7 @@ const Input = styled.input`
   height: 45px;
   line-height: 45px;
   padding: 0 40px 0 10px;
-  transition: 3s ease all;
+  transition: 2s ease-out;
   border: 3px solid transparent;
 
   &:focus {
@@ -109,6 +109,10 @@ const ContTerminos = styled.div`
   input {
     margin-right: 10px;
   }
+
+  @media (max-width: 800px) {
+    grid-column: span 1;
+  }
 `;
 
 const ContBoton = styled.div`
@@ -116,13 +120,17 @@ const ContBoton = styled.div`
   flex-direction: column;
   align-items: center;
   grid-column: span 2;
+
+  @media (max-width: 800px) {
+    grid-column: span 1;
+  }
 `;
 
 const Boton = styled.button`
   height: 45px;
   line-height: 45px;
   width: 30%;
-  background: #000;
+  background: ${colores.borde};
   color: #fff;
   font-weight: bold;
   border: none;
@@ -131,14 +139,14 @@ const Boton = styled.button`
   transition: 0.1s ease all;
 
   &:hover {
-    box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
+    box-shadow: 3px 0px 30px ${colores.borde};
   }
 `;
 
 const MsjExito = styled.p`
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
   color: ${colores.exito};
-  display: none;
 `;
 
 const MsjError = styled.div`
@@ -157,6 +165,15 @@ const MsjError = styled.div`
   }
 `;
 
+const Card = styled.div`
+  width: auto;
+  height: auto;
+  padding: 20px;
+  border-radius: 3px;
+  background: #c5e0d9;
+  box-shadow: 5px 5px 20px rgb(25, 25, 25), -5px -5px 20px rgb(60, 60, 60);
+`;
+
 export {
   Formulario,
   Label,
@@ -169,4 +186,5 @@ export {
   Boton,
   MsjExito,
   MsjError,
+  Card,
 };
